@@ -1,13 +1,13 @@
 <template>
   <div class="bg-gray-200">
-    <Navbar :obj="lesson" />
-    <div class="content">
+    <Navbar :obj="lesson" :extend="extend" @changeExtend="extend = !extend" />
+    <div :class="extend? 'ml-px220' : 'ml-10'">
       <Nuxt />
     </div>
   </div>
 </template>
 <script>
-import bp from '@/plugins/breakpoints'
+import bp from "@/plugins/breakpoints";
 import Navbar from "@/components/Navbar";
 import { mapState } from "vuex";
 export default {
@@ -17,17 +17,18 @@ export default {
   computed: {
     ...mapState(["lesson"]),
   },
-  created(){
-    console.log("eeeee")
+  created() {
+    console.log("eeeee");
   },
-  mounted(){
-    console.log("test",this.test)
+  mounted() {
+    console.log("test", this.test);
   },
   data: () => {
     return {
-      bp
-    }
-  }
+      bp,
+      extend: true,
+    };
+  },
 };
 </script>
 <style>

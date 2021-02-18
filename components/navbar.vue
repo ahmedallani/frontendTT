@@ -4,7 +4,7 @@
     class="h-screen text-sm bg-gray-800 whitespace-nowrap fixed top-0 left-0 flex flex-col pl-2 pb-4  hover:text-white text-gray-300"
   >
     <div>
-      <span @click="extend = !extend">
+      <span @click="$emit('changeExtend')">
         <svg
           v-if="extend"
           class="h-6 w-6 my-2 inline text-white"
@@ -71,10 +71,9 @@
 <script>
 import bp from "@/plugins/breakpoints";
 export default {
-  props: ["obj"],
+  props: ["obj","extend"],
   data() {
     return {
-      extend: true,
       bp,
     };
   },
