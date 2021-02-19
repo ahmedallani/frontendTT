@@ -1,5 +1,6 @@
 <template>
   <div class="flex flex-col items-center">
+    <h1 class="font-serif text-2xl text-center m-4">Building Your First Web Page</h1>
     <comp />
   </div>
 </template>

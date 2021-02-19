@@ -12,7 +12,7 @@
         {{ elm.text }}
       </component>
       <div class="pl-5 m-2">
-        <ViewButton @click="show = !show" less />
+        <ViewButton @click="show = !show" />
       </div>
     </template>
     <template v-else>
@@ -23,7 +23,7 @@
         {{ shortStr(list[1].text) }}
       </component>
       <div class="pl-5 m-2">
-        <ViewButton @click="show = !show"  />
+        <ViewButton @click="show = !show" less />
       </div>
     </template>
   </div>
@@ -44,9 +44,9 @@ export default {
       show: true,
       list: [
         {
-          is: "h2",
-          text: "Introduction",
-          props: { class: "font-serif text-xl  m-4" },
+          is: "h1",
+          text: "Building Your First Web Page",
+          props: { class: "font-serif text-2xl text-center m-4" },
         },
         {
           is: "p",
