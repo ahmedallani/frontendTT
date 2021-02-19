@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-gray-200">
+  <div class="bg-gray-200 font-serif">
     <Navbar :obj="lesson" :extend="extend" @changeExtend="extend = !extend" />
     <div :class="extend? 'ml-px220' : 'ml-10'">
       <Nuxt />
@@ -16,12 +16,6 @@ export default {
   },
   computed: {
     ...mapState(["lesson"]),
-  },
-  created() {
-    console.log("eeeee");
-  },
-  mounted() {
-    console.log("test", this.test);
   },
   data: () => {
     return {
