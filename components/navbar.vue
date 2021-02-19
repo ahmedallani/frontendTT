@@ -1,7 +1,7 @@
 <template>
   <div
     :class="extend? 'w-px220' : 'w-10'"
-    class="h-screen text-sm bg-gray-800 whitespace-nowrap fixed top-0 left-0 flex flex-col pl-2 pb-4  hover:text-white text-gray-300"
+    class="Z-20 h-screen text-sm bg-gray-800 whitespace-nowrap fixed top-0 left-0 flex flex-col pl-2 pb-4  hover:text-white text-gray-300"
   >
     <div>
       <span @click="$emit('changeExtend')">

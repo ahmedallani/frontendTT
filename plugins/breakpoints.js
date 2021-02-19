@@ -64,7 +64,7 @@ if (process.client) {
       breakpoints.h = window.innerHeight
       breakpoints.is = getBreakpoint(window.innerWidth)
       breakpoints.up = getBreakpointUp(window.innerWidth)
-    }, 10),
+    }, 1),
     false
   )
 }

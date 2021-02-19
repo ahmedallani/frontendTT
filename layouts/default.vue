@@ -1,7 +1,12 @@
 <template>
   <div class="bg-gray-200 font-serif">
+    <div
+      v-if="extend && !bp.up.sm"
+      @click="extend = !extend"
+      class="Z-10 w-screen h-screen fixed top-0 left-0 bg-gray-500 opacity-25"
+    ></div>
     <Navbar :obj="lesson" :extend="extend" @changeExtend="extend = !extend" />
-    <div :class="extend? 'ml-px220' : 'ml-10'">
+    <div :class="margin" class="p-2">
       <Nuxt />
     </div>
   </div>
@@ -16,6 +21,12 @@ export default {
   },
   computed: {
     ...mapState(["lesson"]),
+    margin: function () {
+      if (this.extend && this.bp.up.sm) {
+        return "ml-px220";
+      }
+      return "ml-10";
+    },
   },
   data: () => {
     return {
