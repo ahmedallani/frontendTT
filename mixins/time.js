@@ -1,7 +1,7 @@
 export default {
     data() {
         return {
-            wordsByMinute: 200
+            wordsByMinute: 100
         }
     },
     created() {

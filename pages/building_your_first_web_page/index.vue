@@ -44,7 +44,7 @@ export default {
       return [0, 1].map((cv) => ({
         is: `comp${cv}`,
         props: {
-          show: this.show,
+          show: this.show === `comp${cv}`,
         },
         listeners: {
           time: (time) => this.updateTime(`comp${cv}`, time),
