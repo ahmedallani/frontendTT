@@ -9,7 +9,6 @@ const screens = breakpointNames.reduce((acc, cv) => {
   acc[cv] = parseInt(fullConfig.theme.screens[cv].slice(0, -2))
   return acc
 }, {})
-console.log({ screens })
 
 const sm = val => val >= screens.sm && val <= screens.md
 const md = val => val >= screens.md && val <= screens.lg
@@ -28,7 +27,6 @@ const getBreakpointUp = w => {
     acc[cv] = w >= screens[cv]
     return acc
   }, {})
-  console.log("rtn", rtn)
   return rtn
 }
 const debounce = function (func, wait) {

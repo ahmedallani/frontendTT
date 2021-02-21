@@ -1,6 +1,6 @@
 <template>
   <div
-    class="bg-white p-2 w-full h-1/4 m-4 duration-1000 shadow-md hover:shadow-xl max-w-5xl rounded-md"
+    class="bg-white p-2  h-1/4 m-4 duration-1000 shadow-md hover:shadow-xl max-w-5xl  rounded-md"
   >
     <template v-if="show">
       <component
@@ -23,7 +23,7 @@
         {{ shortStr(list[1].text) }}
       </component>
       <div class="pl-5 m-2">
-        <ViewButton @click="show = !show"  />
+        <ViewButton @click="show = !show" />
       </div>
     </template>
   </div>
@@ -42,6 +42,7 @@ export default {
   data() {
     return {
       show: true,
+      wordsByMinute: 200,
       list: [
         {
           is: "h2",
@@ -75,8 +76,21 @@ export default {
       ],
     };
   },
+  created() {
+    this.$emit("time",this.estimate())
+  },
   methods: {
     shortStr,
+    estimate() {
+      let time = this.list.reduce((acc, cv) => {
+        if (cv.text) {
+          acc += cv.text.split(" ").length / this.wordsByMinute;
+        }
+        return acc;
+      }, 0);
+
+      return Math.ceil(time);
+    },
   },
 };
 </script>

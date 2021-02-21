@@ -1,6 +1,6 @@
 <template>
   <div
-    class="bg-white p-2 w-full h-1/4 m-4 duration-1000 shadow-md hover:shadow-xl max-w-5xl rounded-md"
+    class="bg-white p-2  h-1/4 m-4 duration-1000 shadow-md hover:shadow-xl max-w-5xl rounded-md"
   >
     <template v-if="show">
       <component

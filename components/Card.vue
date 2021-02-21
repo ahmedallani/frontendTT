@@ -17,10 +17,7 @@ export default {
   components: {
     ViewButton,
   },
-  props: ["obj", "index"],
-  mounted() {
-    console.log({ obj: this.obj });
-  },
+  props: ["obj", "index"]
 };
 </script>
 

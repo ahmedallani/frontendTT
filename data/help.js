@@ -15,5 +15,6 @@ export function shortStr(str) {
 
 export let icons = {
     ["arrow-left"]: "M10 19l-7-7m0 0l7-7m-7 7h18",
-    ["arrow-right"]: "M14 5l7 7m0 0l-7 7m7-7H3"
+    ["arrow-right"]: "M14 5l7 7m0 0l-7 7m7-7H3",
+    clock: "M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
 }
