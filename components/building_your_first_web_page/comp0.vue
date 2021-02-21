@@ -12,7 +12,7 @@
         {{ elm.text }}
       </component>
       <div class="pl-5 m-2">
-        <ViewButton @click="show = !show" less />
+        <ViewButton @click="$emit('show',false)" less />
       </div>
     </template>
     <template v-else>
@@ -23,7 +23,7 @@
         {{ shortStr(list[1].text) }}
       </component>
       <div class="pl-5 m-2">
-        <ViewButton @click="show = !show" />
+        <ViewButton @click="$emit('show',true)" />
       </div>
     </template>
   </div>
@@ -31,18 +31,19 @@
 
 <script>
 import ViewButton from "@/components/ViewButton.vue";
+import time from "@/mixins/time.js"
 import { shortStr } from "@/data/help";
 let style = {
   p: "text-sm text-gray-900 pl-5 m-2",
 };
 export default {
+  props:["show"],
+  mixins : [time],
   components: {
     ViewButton,
   },
   data() {
     return {
-      show: true,
-      wordsByMinute: 200,
       list: [
         {
           is: "h2",
@@ -76,21 +77,8 @@ export default {
       ],
     };
   },
-  created() {
-    this.$emit("time",this.estimate())
-  },
   methods: {
-    shortStr,
-    estimate() {
-      let time = this.list.reduce((acc, cv) => {
-        if (cv.text) {
-          acc += cv.text.split(" ").length / this.wordsByMinute;
-        }
-        return acc;
-      }, 0);
-
-      return Math.ceil(time);
-    },
+    shortStr
   },
 };
 </script>

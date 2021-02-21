@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col items-center max-w-5xl">
+  <div class="max-w-5xl">
     <div class="relative w-full">
       <h1 class="font-serif text-2xl text-center m-4">
         Building Your First Web Page
@@ -9,39 +9,65 @@
       </div>
     </div>
     <div class="p-2">
-      <comp @time="(time) => updateTime('comp', time)" />
+      <component
+        v-for="(elm, key) in list"
+        :key="key"
+        :is="elm.is"
+        v-bind="elm.props"
+        v-on="elm.listeners"
+      >
+        {{ elm.text }}
+      </component>
     </div>
   </div>
 </template>
 
 <script>
 import Icon from "@/components/Icon.vue";
-import comp from "@/components/building_your_first_web_page/comp";
+import comp0 from "@/components/building_your_first_web_page/comp0";
+import comp1 from "@/components/building_your_first_web_page/comp1";
 export default {
   components: {
     Icon,
-    comp,
+    comp0,
+    comp1,
   },
   data() {
     return {
-      list: ["comp"],
+      show: false,
       time: {},
       timeRead: false,
     };
   },
+  computed: {
+    list: function () {
+      return [0, 1].map((cv) => ({
+        is: `comp${cv}`,
+        props: {
+          show: this.show,
+        },
+        listeners: {
+          time: (time) => this.updateTime(`comp${cv}`, time),
+          show: (show) => this.updateShow(`comp${cv}`, show),
+        },
+      }));
+    },
+  },
   methods: {
     updateTime(name, time) {
-      debugger
       this.time[name] = time;
       let size = Object.keys(this.time).length;
       if (size >= this.list.length) {
         this.updateTimeRead();
       }
     },
+    updateShow(name, show) {
+      this.show = show ? name : false;
+    },
     updateTimeRead() {
       this.timeRead = Math.ceil(
         this.list.reduce((acc, cv) => {
-          acc += this.time[cv];
+          acc += this.time[cv.is];
           return acc;
         }, 0)
       );

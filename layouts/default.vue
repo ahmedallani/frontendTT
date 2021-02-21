@@ -6,7 +6,7 @@
       class="Z-10 w-screen h-screen fixed top-0 left-0 bg-gray-500 opacity-25"
     ></div>
     <Navbar :obj="lesson" :extend="extend" @changeExtend="extend = !extend" />
-    <div :class="margin" class="p-2">
+    <div :class="margin" class="p-2 flex flex-col items-center">
       <Nuxt />
     </div>
   </div>

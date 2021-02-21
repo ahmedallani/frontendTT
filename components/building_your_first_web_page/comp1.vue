@@ -1,6 +1,6 @@
 <template>
   <div
-    class="bg-white p-2  h-1/4 m-4 duration-1000 shadow-md hover:shadow-xl max-w-5xl rounded-md"
+    class="bg-white p-2  h-1/4 m-4 duration-1000 shadow-md hover:shadow-xl max-w-5xl  rounded-md"
   >
     <template v-if="show">
       <component
@@ -12,7 +12,7 @@
         {{ elm.text }}
       </component>
       <div class="pl-5 m-2">
-        <ViewButton @click="show = !show" />
+        <ViewButton @click="$emit('changeShow',false)" less />
       </div>
     </template>
     <template v-else>
@@ -23,7 +23,7 @@
         {{ shortStr(list[1].text) }}
       </component>
       <div class="pl-5 m-2">
-        <ViewButton @click="show = !show" less />
+        <ViewButton @click="$emit('changeShow',true)" />
       </div>
     </template>
   </div>
@@ -31,22 +31,24 @@
 
 <script>
 import ViewButton from "@/components/ViewButton.vue";
+import time from "@/mixins/time.js"
 import { shortStr } from "@/data/help";
 let style = {
   p: "text-sm text-gray-900 pl-5 m-2",
 };
 export default {
+  props:["show"],
+  mixins : [time],
   components: {
     ViewButton,
   },
   data() {
     return {
-      show: true,
       list: [
         {
-          is: "h1",
-          text: "Building Your First Web Page",
-          props: { class: "font-serif text-2xl text-center m-4" },
+          is: "h2",
+          text: "Introduction",
+          props: { class: "font-serif text-xl  m-4" },
         },
         {
           is: "p",
@@ -76,7 +78,7 @@ export default {
     };
   },
   methods: {
-    shortStr,
+    shortStr
   },
 };
 </script>
