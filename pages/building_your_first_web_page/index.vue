@@ -23,6 +23,7 @@
 </template>
 
 <script>
+import { mapMutations } from "vuex";
 import Icon from "@/components/Icon.vue";
 import comp0 from "@/components/building_your_first_web_page/comp0";
 import comp1 from "@/components/building_your_first_web_page/comp1";
@@ -37,23 +38,40 @@ export default {
       show: false,
       time: {},
       timeRead: false,
+      listTitle:[
+        "Introduction",
+        "What Are HTML & CSS?"
+      ]
     };
+  },
+  created(){
+    this.changeLesson(this.lesson)
   },
   computed: {
     list: function () {
-      return [0, 1].map((cv) => ({
-        is: `comp${cv}`,
+      return this.listTitle.map((title,index) => ({
+        is: `comp${index}`,
+        title,
         props: {
-          show: this.show === `comp${cv}`,
+          show: this.show === `comp${index}`,
         },
         listeners: {
-          time: (time) => this.updateTime(`comp${cv}`, time),
-          show: (show) => this.updateShow(`comp${cv}`, show),
+          time: (time) => this.updateTime(`comp${index}`, time),
+          show: (show) => this.updateShow(`comp${index}`, show),
         },
       }));
     },
+    lesson: function(){
+      return {
+        back : "/",
+        title: "Building Your First Web Page",
+        url : "/building_your_first_web_page",
+        list: this.list
+      }
+    }
   },
   methods: {
+    ...mapMutations(["changeLesson"]),
     updateTime(name, time) {
       this.time[name] = time;
       let size = Object.keys(this.time).length;
