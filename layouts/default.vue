@@ -5,7 +5,7 @@
       @click="extend = !extend"
       class="Z-10 w-screen h-screen fixed top-0 left-0 bg-gray-500 opacity-25"
     ></div>
-    <Navbar :obj="lesson" :extend="extend" @changeExtend="extend = !extend" />
+    <Navbar :obj="lesson" :extend="extend" v-on="navOn" />
     <div :class="margin" class="p-2 flex flex-col items-center">
       <Nuxt />
     </div>
@@ -27,12 +27,28 @@ export default {
       }
       return "ml-10";
     },
+    navOn: function () {
+      return {
+        extend: this.changeExtend,
+        view: this.changeView,
+      };
+    },
   },
   data: () => {
     return {
       bp,
       extend: true,
     };
+  },
+  methods: {
+    changeExtend: function () {
+      this.extend = !this.extend;
+    },
+    changeView: function (evt) {
+      if (evt.url) {
+        return $nuxt.$router.push({ path: evt.url });
+      }
+    },
   },
 };
 </script>
