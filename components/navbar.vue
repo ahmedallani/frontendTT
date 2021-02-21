@@ -61,7 +61,8 @@
     <div class="max-h-screen overflow-y-auto divide-y divide-gray-600">
       <div v-for="(elm, key) in obj.list" :key="key">
         <div class="py-4">
-          <NuxtLink :to="elm.url"> {{ key + 1 }}<span v-if="extend">.{{ elm.title }}</span> </NuxtLink>
+          <NuxtLink v-if="elm.url" :to="elm.url"> {{ key + 1 }}<span v-if="extend">.{{ elm.title }}</span> </NuxtLink>
+          <div v-else @click="updateShow(elm)"> {{ key + 1 }}<span v-if="extend">.{{ elm.title }}</span> </div>
         </div>
       </div>
     </div>
@@ -70,12 +71,19 @@
 </template>
 <script>
 import bp from "@/plugins/breakpoints";
+import { mapMutations } from "vuex";
 export default {
-  props: ["obj","extend"],
+  props: ["obj", "extend"],
   data() {
     return {
       bp,
     };
+  },
+  methods: {
+    ...mapMutations(["changeShow"]),
+    updateShow: function (elm) {
+      this.changeShow(elm.is);
+    },
   },
 };
 </script>

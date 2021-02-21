@@ -26,7 +26,10 @@
 import Icon from "@/components/Icon.vue";
 import comp0 from "@/components/building_your_first_web_page/comp0";
 import comp1 from "@/components/building_your_first_web_page/comp1";
+import mixLesson from "@/mixins/lesson";
+import mixShow from "@/mixins/show";
 export default {
+  // mixins: [mixLesson, mixShow],
   components: {
     Icon,
     comp0,
@@ -34,23 +37,31 @@ export default {
   },
   data() {
     return {
-      show: false,
       time: {},
       timeRead: false,
     };
   },
   computed: {
     list: function () {
-      return [0, 1].map((cv) => ({
-        is: `comp${cv}`,
+      return [].map((cv, index) => ({
+        title: cv,
+        is: `comp${index}`,
         props: {
-          show: this.show === `comp${cv}`,
+          show: this.show === `comp${index}`,
         },
         listeners: {
-          time: (time) => this.updateTime(`comp${cv}`, time),
-          show: (show) => this.updateShow(`comp${cv}`, show),
+          time: (time) => this.updateTime(`comp${index}`, time),
+          show: (show) => this.updateShow(`comp${index}`, show),
         },
       }));
+    },
+    lesson: function () {
+      return {
+        nbr: 1,
+        title: "Building Your First Web Page",
+        url: "/",
+        list: this.list,
+      };
     },
   },
   methods: {
@@ -62,7 +73,7 @@ export default {
       }
     },
     updateShow(name, show) {
-      this.show = show ? name : false;
+      this.changeShow(show ? name : false);
     },
     updateTimeRead() {
       this.timeRead = Math.ceil(

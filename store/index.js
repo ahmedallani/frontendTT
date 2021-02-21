@@ -1,10 +1,15 @@
 import lesson from "@/data/ls1";
 export const state = () => ({
-    lesson: lesson
+    lesson: lesson,
+    show:false
 })
 
-export const getters = {
-    getUsername: state => {
-        return state.username ? state.username : "state.username"
-    }
+
+export const mutations = {
+    changeLesson(state, lesson) {
+        state.lesson = lesson
+    },
+    changeShow(state, show) {
+        state.show = show
+    },
 }
