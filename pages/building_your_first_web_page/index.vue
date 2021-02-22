@@ -23,7 +23,7 @@
 </template>
 
 <script>
-import { mapMutations } from "vuex";
+import { mapState,mapMutations } from "vuex";
 import Icon from "@/components/Icon.vue";
 import comp0 from "@/components/building_your_first_web_page/comp0";
 import comp1 from "@/components/building_your_first_web_page/comp1";
@@ -35,7 +35,6 @@ export default {
   },
   data() {
     return {
-      show: false,
       time: {},
       timeRead: false,
       listTitle:[
@@ -48,16 +47,18 @@ export default {
     this.changeLesson(this.lesson)
   },
   computed: {
+    ...mapState(["show"]),
     list: function () {
       return this.listTitle.map((title,index) => ({
         is: `comp${index}`,
+        show: `comp${index}`,
         title,
         props: {
           show: this.show === `comp${index}`,
         },
         listeners: {
-          time: (time) => this.updateTime(`comp${index}`, time),
-          show: (show) => this.updateShow(`comp${index}`, show),
+          time: function(time) { return  this.updateTime(`comp${index}`, time)}.bind(this),
+          show: function(show) { return this.updateShow(`comp${index}`, show)}.bind(this),
         },
       }));
     },
@@ -71,7 +72,7 @@ export default {
     }
   },
   methods: {
-    ...mapMutations(["changeLesson"]),
+    ...mapMutations(["changeLesson","changeShow"]),
     updateTime(name, time) {
       this.time[name] = time;
       let size = Object.keys(this.time).length;
@@ -80,7 +81,7 @@ export default {
       }
     },
     updateShow(name, show) {
-      this.show = show ? name : false;
+      this.changeShow(show ? name : false)
     },
     updateTimeRead() {
       this.timeRead = Math.ceil(

@@ -14,7 +14,7 @@
 <script>
 import bp from "@/plugins/breakpoints";
 import Navbar from "@/components/Navbar";
-import { mapState } from "vuex";
+import { mapState, mapMutations } from "vuex";
 export default {
   components: {
     Navbar,
@@ -29,8 +29,8 @@ export default {
     },
     navOn: function () {
       return {
-        extend: this.changeExtend,
-        view: this.changeView,
+        extend: this.changeExtend.bind(this),
+        view: this.changeView.bind(this),
       };
     },
   },
@@ -41,13 +41,18 @@ export default {
     };
   },
   methods: {
+    ...mapMutations(["changeShow"]),
     changeExtend: function () {
       this.extend = !this.extend;
     },
     changeView: function (evt) {
+      debugger
       if (evt.url) {
-        return $nuxt.$router.push({ path: evt.url });
+        $nuxt.$router.push({ path: evt.url });
+        return;
       }
+      this.changeShow(evt.show);
+      return;
     },
   },
 };
