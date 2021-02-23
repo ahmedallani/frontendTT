@@ -65,6 +65,7 @@ export default {
     lesson: function(){
       return {
         back : "/",
+        nbr: "1",
         title: "Building Your First Web Page",
         url : "/building_your_first_web_page",
         list: this.list

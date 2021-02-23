@@ -9,11 +9,10 @@
       </span>
     </div>
     <div class="flex items-center text-xs space-x-5 py-1">
-      <div class="hover:text-white cursor-pointer">
+      <div class="hover:text-white cursor-pointer" @click="$emit('view', { url: obj.back })">
         <Icon
-          v-if="obj.before"
+          v-if="obj.back"
           name="arrow-circle-left"
-          @click="$emit('view', { url: obj.before })"
         />
       </div>
       <div v-if="extend">
