@@ -27,11 +27,13 @@ import { mapState,mapMutations } from "vuex";
 import Icon from "@/components/Icon.vue";
 import comp0 from "@/components/building_your_first_web_page/comp0";
 import comp1 from "@/components/building_your_first_web_page/comp1";
+import comp2 from "@/components/building_your_first_web_page/comp2";
 export default {
   components: {
     Icon,
     comp0,
     comp1,
+    comp2
   },
   data() {
     return {
@@ -39,7 +41,8 @@ export default {
       timeRead: false,
       listTitle:[
         "Introduction",
-        "What Are HTML & CSS?"
+        "What Are HTML & CSS?",
+        "Understanding Common HTML Terms"
       ]
     };
   },
