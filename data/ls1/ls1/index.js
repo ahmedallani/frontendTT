@@ -1,7 +1,7 @@
 import ls1 from "./ls1"
 import ls2 from "./ls2"
 import ls3 from "./ls3"
-import { toUrl, shortStr, style } from "@/data/help"
+import { toUrl, shortStr } from "@/data/help"
 
 
 let title = "Building Your First Web Page"
