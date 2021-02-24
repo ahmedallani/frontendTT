@@ -1,6 +1,6 @@
 <template>
   <div class="max-w-5xl">
-    <div class="relative w-full">
+    <div class="relative w-full pt-4">
       <h1 class="font-serif text-2xl text-center m-4">
         Building Your First Web Page
       </h1>
@@ -8,7 +8,7 @@
         {{ timeRead }} min read <Icon name="clock" />
       </div>
     </div>
-    <div class="p-2">
+    <div >
       <component
         v-for="(elm, key) in list"
         :key="key"
