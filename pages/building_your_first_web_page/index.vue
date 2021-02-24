@@ -1,6 +1,6 @@
 <template>
   <div class="max-w-5xl">
-    <div class="relative w-full pt-4">
+    <div class="relative w-full pt-6">
       <h1 class="font-serif text-2xl text-center m-4">
         Building Your First Web Page
       </h1>
