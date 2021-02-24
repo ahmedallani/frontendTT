@@ -30,8 +30,10 @@
 </template>
 
 <script>
+import Code from "@/components/Code"
 import ViewButton from "@/components/ViewButton.vue";
 import time from "@/mixins/time.js"
+
 import { shortStr } from "@/data/help";
 let style = {
   p: "text-sm text-gray-900 pl-5 m-2",
@@ -70,6 +72,13 @@ export default {
         },
         {
           is: "p",
+          text:
+            "Elements are identified by the use of less-than and greater-than angle brackets, < >, surrounding the element name. Thus, an element will look like the following:",
+          props: { class: style.p },
+        }
+        ,
+        {
+          is: "Code",
           text:
             "Elements are identified by the use of less-than and greater-than angle brackets, < >, surrounding the element name. Thus, an element will look like the following:",
           props: { class: style.p },
