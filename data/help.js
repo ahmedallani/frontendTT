@@ -22,3 +22,7 @@ export let icons = {
     x: "M6 18L18 6M6 6l12 12"
 
 }
+
+export let style = {
+    p: "text-sm text-gray-700 pl-5 m-2",
+};
