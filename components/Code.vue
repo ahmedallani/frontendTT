@@ -1,11 +1,13 @@
 <template>
-  <pre>
-    <code v-highlight="`<a>`" class="html rounded-xl border-2 border-gray-500"></code>
+  <pre class="mx-8">
+    <code v-highlight="highlight" class="html rounded-xl border-2 border-gray-500 "></code>
   </pre>
 </template>
 
 <script>
-export default {};
+export default {
+  props:["highlight"]
+};
 </script>
 
 <style>

@@ -71,7 +71,6 @@ export default {
   methods: {
     ...mapMutations(["changeLesson", "changeShow"]),
     updateTime(name, time) {
-      debugger;
       this.time[name] = time;
       let size = Object.keys(this.time).length;
       if (size >= this.list.length) {

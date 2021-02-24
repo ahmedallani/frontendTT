@@ -33,8 +33,44 @@ export default {
         {
             is: "Code",
             text:
-                "Elements are identified by the use of less-than and greater-than angle brackets, < >, surrounding the element name. Thus, an element will look like the following:",
+                "<a>",
+            props: {  highlight: "<a>" },
+        },
+        ,
+        {
+            is: "h3",
+            text: "Tags",
+            props: { class: "font-serif text-lg  m-4 text-green-800" },
+        },
+        {
+            is: "p",
+            text:
+                "An opening tag marks the beginning of an element. It consists of a less-than sign followed by an element’s name, and then ends with a greater-than sign; for example, <div>.",
             props: { class: style.p },
         },
+        {
+            is: "p",
+            text:
+                "A closing tag marks the end of an element. It consists of a less-than sign followed by a forward slash and the element’s name, and then ends with a greater-than sign; for example, </div>.",
+            props: { class: style.p },
+        },
+        {
+            is: "p",
+            text:
+                "The content that falls between the opening and closing tags is the content of that element. An anchor link, for example, will have an opening tag of <a> and a closing tag of </a>. What falls between these two tags will be the content of the anchor link.",
+            props: { class: style.p },
+        },
+        {
+            is: "p",
+            text:
+                "So, anchor tags will look a bit like this:",
+            props: { class: style.p },
+        },
+        {
+            is: "Code",
+            text:
+                "<a>...</a>",
+            props: {  highlight: "<a>...</a>" },
+        }
     ],
 }
