@@ -1,6 +1,6 @@
 <template>
   <pre>
-    <code v-highlight="`<a>`" class="html"></code>
+    <code v-highlight="`<a>`" class="html rounded-xl border-2 border-gray-500"></code>
   </pre>
 </template>
 

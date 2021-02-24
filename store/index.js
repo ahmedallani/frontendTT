@@ -9,7 +9,6 @@ export const mutations = {
         state.lesson = lesson
     },
     changeShow: (state,show) => {
-        debugger
         state.show = show
     }
 }

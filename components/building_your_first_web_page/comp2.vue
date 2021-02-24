@@ -1,48 +1,29 @@
 <template>
   <div
-    class="bg-white p-2  h-1/4 m-4 duration-1000 shadow-md hover:shadow-xl max-w-5xl  rounded-md"
+    class="bg-white p-2 h-1/4 m-4 duration-1000 shadow-md hover:shadow-xl max-w-5xl rounded-md"
   >
-    <template v-if="show">
-      <component
-        v-for="(elm, key) in list"
-        :key="key"
-        :is="elm.is"
-        v-bind="elm.props"
-      >
-        {{ elm.text }}
-      </component>
-      <div class="pl-5 m-2">
-        <ViewButton @click="$emit('show',false)" less />
-      </div>
-    </template>
-    <template v-else>
-      <component :is="list[0].is" v-bind="list[0].props">
-        {{ list[0].text }}
-      </component>
-      <component :is="list[1].is" v-bind="list[1].props">
-        {{ shortStr(list[1].text) }}
-      </component>
-      <div class="pl-5 m-2">
-        <ViewButton @click="$emit('show',true)" />
-      </div>
-    </template>
+    <Generate :obj="displayObj" />
+    <div class="pl-5 m-2">
+      <ViewButton @click="$emit('show', !show)" :less="show" />
+    </div>
   </div>
 </template>
 
 <script>
-import Code from "@/components/Code"
+import Generate from "@/components/Generate";
 import ViewButton from "@/components/ViewButton.vue";
-import time from "@/mixins/time.js"
+import time from "@/mixins/time.js";
 
 import { shortStr } from "@/data/help";
 let style = {
-  p: "text-sm text-gray-900 pl-5 m-2",
+  p: "text-sm text-gray-700 pl-5 m-2",
 };
 export default {
-  props:["show"],
-  mixins : [time],
+  props: ["show"],
+  mixins: [time],
   components: {
     ViewButton,
+    Generate,
   },
   data() {
     return {
@@ -60,8 +41,7 @@ export default {
         },
         {
           is: "h3",
-          text:
-            "Elements",
+          text: "Elements",
           props: { class: "font-serif text-lg  m-4 text-green-800" },
         },
         {
@@ -75,19 +55,36 @@ export default {
           text:
             "Elements are identified by the use of less-than and greater-than angle brackets, < >, surrounding the element name. Thus, an element will look like the following:",
           props: { class: style.p },
-        }
-        ,
+        },
         {
           is: "Code",
           text:
             "Elements are identified by the use of less-than and greater-than angle brackets, < >, surrounding the element name. Thus, an element will look like the following:",
           props: { class: style.p },
-        }
+        },
       ],
     };
   },
+  computed: {
+    obj: function () {
+      return { list: this.list };
+    },
+    displayObj: function () {
+      return this.show
+        ? this.obj
+        : {
+            list: [
+              this.obj.list[0],
+              {
+                ...this.obj.list[1],
+                text: this.shortStr(this.obj.list[1].text),
+              },
+            ],
+          };
+    },
+  },
   methods: {
-    shortStr
+    shortStr,
   },
 };
 </script>

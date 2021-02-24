@@ -7,7 +7,9 @@
     ></div>
     <Navbar :obj="lesson" :extend="extend" v-on="navOn" />
     <div :class="margin" class="p-2 flex flex-col items-center">
-      <Nuxt />
+      <client-only>
+        <Nuxt />
+      </client-only>
     </div>
   </div>
 </template>
@@ -46,7 +48,6 @@ export default {
       this.extend = !this.extend;
     },
     changeView: function (evt) {
-      debugger
       if (evt.url) {
         $nuxt.$router.push({ path: evt.url });
         return;

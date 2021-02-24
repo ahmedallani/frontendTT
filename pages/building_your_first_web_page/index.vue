@@ -23,60 +23,52 @@
 </template>
 
 <script>
-import { mapState,mapMutations } from "vuex";
+import { mapState, mapMutations } from "vuex";
 import Icon from "@/components/Icon.vue";
-import comp0 from "@/components/building_your_first_web_page/comp0";
-import comp1 from "@/components/building_your_first_web_page/comp1";
-import comp2 from "@/components/building_your_first_web_page/comp2";
+import comp from "@/components/building_your_first_web_page";
+import lesson from "@/data/ls1/ls1/index.js";
 export default {
   components: {
     Icon,
-    comp0,
-    comp1,
-    comp2
+    comp,
   },
   data() {
     return {
       time: {},
       timeRead: false,
-      listTitle:[
-        "Introduction",
-        "What Are HTML & CSS?",
-        "Understanding Common HTML Terms"
-      ]
+      lesson: lesson,
     };
   },
-  created(){
-    this.changeLesson(this.lesson)
+  created() {
+    this.changeLesson(this.obj);
   },
   computed: {
     ...mapState(["show"]),
     list: function () {
-      return this.listTitle.map((title,index) => ({
-        is: `comp${index}`,
+      return this.lesson.list.map((elm, index) => ({
+        is: `comp`,
         show: `comp${index}`,
-        title,
+        title: elm.title,
         props: {
           show: this.show === `comp${index}`,
+          obj: elm,
         },
         listeners: {
-          time: function(time) { return  this.updateTime(`comp${index}`, time)}.bind(this),
-          show: function(show) { return this.updateShow(`comp${index}`, show)}.bind(this),
+          time: function (time) {
+            return this.updateTime(`comp${index}`, time);
+          }.bind(this),
+          show: function (show) {
+            return this.updateShow(`comp${index}`, show);
+          }.bind(this),
         },
       }));
     },
-    lesson: function(){
-      return {
-        back : "/",
-        nbr: "1",
-        title: "Building Your First Web Page",
-        url : "/building_your_first_web_page",
-        list: this.list
-      }
-    }
+    obj: function () {
+      return { ...this.lesson, list: this.list };
+    },
   },
   methods: {
-    ...mapMutations(["changeLesson","changeShow"]),
+    ...mapMutations(["changeLesson", "changeShow"]),
     updateTime(name, time) {
       this.time[name] = time;
       let size = Object.keys(this.time).length;
@@ -85,7 +77,7 @@ export default {
       }
     },
     updateShow(name, show) {
-      this.changeShow(show ? name : false)
+      this.changeShow(show ? name : false);
     },
     updateTimeRead() {
       this.timeRead = Math.ceil(

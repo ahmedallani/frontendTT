@@ -1,9 +1,6 @@
 <template>
   <div class="flex justify-center">
     <div class="grid grid-cols-1 md:grid-cols-2 gap-4 p-2">
-      <pre>
-        <code v-highlight="code" class="javascript">console.log('Hello World')</code>
-      </pre>
       <Card
         v-for="(elm, index) in lesson.list"
         :key="index"
