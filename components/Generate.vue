@@ -10,9 +10,11 @@
 
 <script>
 import Code from "@/components/Code";
+import Pen from "@/components/Pen";
 export default {
   components: {
     Code,
+    Pen
   },
   props: ["obj"],
 };
