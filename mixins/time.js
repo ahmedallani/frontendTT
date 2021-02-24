@@ -4,7 +4,8 @@ export default {
             wordsByMinute: 100
         }
     },
-    created() {
+    mounted() {
+        console.log(this.obj.title, this.estimate())
         this.$emit("time", this.estimate())
     },
     methods: {

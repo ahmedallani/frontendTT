@@ -55,6 +55,7 @@ export default {
         },
         listeners: {
           time: function (time) {
+            console.log(index, time);
             return this.updateTime(`comp${index}`, time);
           }.bind(this),
           show: function (show) {
@@ -70,6 +71,7 @@ export default {
   methods: {
     ...mapMutations(["changeLesson", "changeShow"]),
     updateTime(name, time) {
+      debugger;
       this.time[name] = time;
       let size = Object.keys(this.time).length;
       if (size >= this.list.length) {
@@ -82,7 +84,7 @@ export default {
     updateTimeRead() {
       this.timeRead = Math.ceil(
         this.list.reduce((acc, cv) => {
-          acc += this.time[cv.is];
+          acc += this.time[cv.show];
           return acc;
         }, 0)
       );
